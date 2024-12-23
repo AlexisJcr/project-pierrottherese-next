@@ -5,12 +5,34 @@ export default {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./ui/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "361px",
+        sm: "601px",
+        md: "901px",
+        lg: "1101px",
+        xl: "1441px",
+        xxl: "1921px",
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: {
+          DEFAULT: "#14253c",
+        },
+        primary: {
+          DEFAULT: "#171e31",
+        },
+        secondary: {
+          DEFAULT: "#101010",
+        },
+        tertiary: {
+          DEFAULT: "#4b75ff",
+        },
+        white: {
+          DEFAULT: "#FFFFFF",
+        },
       },
     },
   },
