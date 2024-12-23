@@ -75,7 +75,7 @@ const Navbar = () => {
           </ul>
         </div>
         <a
-          href="https://www.linkedin.com/in/votre-profil-linkedin"
+          href="https://www.linkedin.com/in/alexis-joncour-518819296/"
           target="_blank"
           rel="noopener noreferrer"
           className="text-xl hover:text-gray-300"

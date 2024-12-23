@@ -1,4 +1,4 @@
-import Image from "next/image";
+"use client";
 
 import Navbar from "@/ui/components/navbar/Navbar"
 import Home from "@/ui/components/home/Home"

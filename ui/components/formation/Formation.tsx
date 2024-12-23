@@ -83,7 +83,7 @@ const Formation = () => {
     },
     {
       title: "BTS Systèmes Numérique Option Informatique et Réseaux",
-      text: "J'ai poursuivis mes études avec un BTS Systèmes Numériques Informatique et Réseaux et l'ai obtenu en juin 2024 en tant que major de promotion et second de l'Académie de Rennes. Ce BTS m'a permis d'acquérir de nombreuses compétences dans le développement informatique ainsi que dans le monde du réseau et systèmes communicants.",
+      text: "J'ai poursuivi mes études avec un BTS Systèmes Numériques Informatique et Réseaux et l'ai obtenu en juin 2024 en tant que major de promotion et second de l'Académie de Rennes. Ce BTS m'a permis d'acquérir de nombreuses compétences dans le développement informatique ainsi que dans le monde du réseau et des systèmes communicants.",
       imageSrc: formaSN,
     },
     {
