@@ -65,7 +65,7 @@ const Navbar = () => {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="text-xl font-semibold transition-colors duration-300 ease-in-out hover:text-gray-500"
+                  className="text-xl font-semibold transition-colors duration-200 ease-in-out hover:text-gray-500"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -78,12 +78,12 @@ const Navbar = () => {
           href="https://www.linkedin.com/in/alexis-joncour-518819296/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xl hover:text-gray-300"
+          className="text-xl transition-colors duration-200 hover:text-gray-300 active:scale-95"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
+            width="36"
+            height="36"
             viewBox="0 0 24 24"
             fill="currentColor"
           >

@@ -23,7 +23,7 @@ const Competences = () => {
     { icon: FaCode, title: "Développement Web", subtitle:"Avancé", text:"Next / React / NodeJS / JavaScript / TypeScript / Tailwind / CSS" },
     { icon: FaDesktop, title: "Développement Logiciel", subtitle:"Intermédiaire", text:"Python / C++ / Java" },
     { icon: FaMobile, title: "Développement Mobile", subtitle:"Débutant", text:"Dart Flutter / Android" },
-    { icon: FaServer, title: "Administration Réseaux", subtitle:"Avancé", text:"Architecture / LAN WAN / Linux / Windows Server / Active Directory" },
+    { icon: FaServer, title: "Administration Réseaux", subtitle:"Avancé", text:"Architecture / LAN WAN / Linux / Windows Server / Active Directory / VMWare / CISCO / MikroTik" },
     { icon: FaDatabase, title: "Bases de données", subtitle:"Intermédiaire", text:"MySQL" },
     { icon: FaCog, title: "DevOps", subtitle:"Débutant", text:"Ansible / CI CD" },
   ];

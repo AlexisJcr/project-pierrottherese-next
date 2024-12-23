@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import logoCroixRouge from "@/ui/design-system/image/logo-croixrouge.png";
-import logoUBO from "@/ui/design-system/image/logo-ubo.png"
+import logoCroixRouge from "@/ui/design-system/image/logo-croixrouge-noir.png";
+import logoUBO from "@/ui/design-system/image/logo-ubo-noir.png"
 
 import formaSTI from "@/ui/design-system/image/forma-sti.jpg"
 import formaSN from "@/ui/design-system/image/forma-sn.jpg"
@@ -20,13 +20,13 @@ const TimelineItem = ({
 }) => (
   <div className="mb-8 flex justify-between items-center w-full">
     <div className="order-1 w-5/12">
-      <div className="bg-gray-200 rounded-lg shadow-xl px-6 py-4">
-        <h3 className="mb-3 font-bold text-gray-800 text-xl">{title}</h3>
-        <p className="text-base leading-snug tracking-wide text-gray-900 text-opacity-100">{subtitle}</p>
-        <p className="mt-2 font-medium text-sm text-gray-600">{date}</p>
+      <div className="bg-primary rounded-lg shadow-xl px-6 py-4">
+        <h3 className="mb-3 font-bold text-gray-50 text-xl">{title}</h3>
+        <p className="text-base leading-snug tracking-wide text-gray-200 text-opacity-100">{subtitle}</p>
+        <p className="mt-2 font-medium text-sm text-gray-300">{date}</p>
       </div>
     </div>
-    <div className="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-16 h-8 rounded-lg">
+    <div className="z-20 flex items-center order-1 bg-secondary shadow-xl w-16 h-8 rounded-lg">
       <h1 className="mx-auto font-semibold text-lg text-white">{date.split('-')[0]}</h1>
     </div>
     <div className="order-1 w-5/12 flex justify-center">
@@ -77,12 +77,12 @@ const Formation = () => {
 
   const infoCards = [
     {
-      title: "Baccalauréat Technologique STI2D Option Systèmes d'Information et Numérique",
+      title: "Baccalauréat Technologique STI2D, Systèmes d'Information et Numérique",
       text: "J’ai obtenu mon Baccalauréat Technologique en Sciences de l’industrie et du développement durable avec l’option Systèmes d’Information et Numérique en 2022. Mon intérêt pour le monde numérique, déjà grandissant à l'époque, m’a conduit à suivre cette voie technologique. J'ai pu me plonger dans l'apprentissage des règles et coutumes des projets et du monde numérique.",
       imageSrc: formaSTI,
     },
     {
-      title: "BTS Systèmes Numérique Option Informatique et Réseaux",
+      title: "BTS Systèmes Numériques, Informatique et Réseaux",
       text: "J'ai poursuivi mes études avec un BTS Systèmes Numériques Informatique et Réseaux et l'ai obtenu en juin 2024 en tant que major de promotion et second de l'Académie de Rennes. Ce BTS m'a permis d'acquérir de nombreuses compétences dans le développement informatique ainsi que dans le monde du réseau et des systèmes communicants.",
       imageSrc: formaSN,
     },
@@ -97,12 +97,15 @@ const Formation = () => {
     <section id="formation" className="py-20 bg-secondary">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-12">Formation</h2>
-        
+          <div className="bg-gray-200 rounded-lg">
+
+          
           <div className="wrap overflow-hidden p-10 h-full">
             {timelineItems.map((item, index) => (
               <TimelineItem key={index} {...item} />
             ))}
           </div>
+        </div>
         </div>
 
         <div className="wrap overflow-hidden p-10 h-full grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
