@@ -26,7 +26,7 @@ const TimelineItem = ({
         <p className="mt-2 font-medium text-sm text-gray-300">{date}</p>
       </div>
     </div>
-    <div className="z-20 flex items-center order-1 bg-secondary shadow-xl w-16 h-8 rounded-lg">
+    <div className="z-20 flex items-center order-1 bg-black shadow-xl w-16 h-8 rounded-lg">
       <h1 className="mx-auto font-semibold text-lg text-white">{date.split('-')[0]}</h1>
     </div>
     <div className="order-1 w-5/12 flex justify-center">

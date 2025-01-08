@@ -18,14 +18,11 @@ export default {
         xxl: "1921px",
       },
       colors: {
-        background: {
-          DEFAULT: "#14253c",
-        },
         primary: {
           DEFAULT: "#171e31",
         },
         secondary: {
-          DEFAULT: "#101010",
+          DEFAULT: "#14253c",
         },
         tertiary: {
           DEFAULT: "#4b75ff",
@@ -33,6 +30,9 @@ export default {
         white: {
           DEFAULT: "#FFFFFF",
         },
+        black:{
+          DEFAULT: "#101010",
+        }
       },
     },
   },

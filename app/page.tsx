@@ -7,6 +7,7 @@ import About from "@/ui/components/about/About"
 import Formation from "@/ui/components/formation/Formation"
 import Experience from "@/ui/components/experience/Experience"
 import Skills from "@/ui/components/skills/Skills"
+import Loisirs from "@/ui/components/loisirs/Loisirs"
 
 export default function Portfolio() {
   return (
@@ -17,6 +18,7 @@ export default function Portfolio() {
       <Formation />
       <Experience />
       <Skills />
+      <Loisirs />
     </div>
   );
 }

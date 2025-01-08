@@ -1,20 +1,59 @@
-import Link from 'next/link';
+import { motion} from "framer-motion";
+import { Github, Linkedin, ChevronDown } from "lucide-react";
 
 const Home = () => {
   return (
-    <section id="accueil" className="pl-[8vw] min-h-screen flex flex-col items-start justify-center" style={{background:"radial-gradient(circle at 5% 90.8%, rgb(49, 54, 71) 0%, rgb(0, 0, 0) 99.4%)"}}>
-
-      <div className="text-left">
-        <h1 className="text-4xl md:text-6xl font-semibold mb-[3rem] ml-[-6px]">Bienvenue !</h1>
-        <h2 className="text-3xl md:text-5xl font-medium mb-3">Je suis Alexis Joncour</h2>
-        <h3 className="text-2xl md:text-5xl text-tertiary font-normal ml-[-6px] mb-[2rem]">Étudiant en Développement d'Application</h3>
-      </div>
-      <Link href="#about" className="bg-tertiary hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg text-2xl transition duration-300">
-          À propos de moi
-        </Link>
-    </section>
+    <div className="min-h-screen bg-primary text-white">
+      <section className="h-screen flex flex-col justify-center items-center relative">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-center"
+        >
+          <h1 className="text-6xl md:text-8xl font-bold mb-6">Alexis Joncour</h1>
+          <motion.h2
+            className="text-2xl md:text-4xl text-blue-400 font-medium mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            Étudiant en Développement d'Application
+          </motion.h2>
+          <div className="flex justify-center space-x-6">
+            <motion.a
+              href="https://www.linkedin.com/in/alexis-joncour-518819296/"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="bg-black p-3 rounded-full"
+            >
+              <Linkedin size={40} className="text-white"/>
+            </motion.a>
+            <motion.a
+              href="https://github.com/AlexisJcr"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="bg-black p-3 rounded-full"
+            >
+              <Github size={40} className="text-white"/>
+            </motion.a>
+          </div>
+        </motion.div>
+        <motion.div
+          className="absolute bottom-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1 }}
+        >
+          <ChevronDown size={45} className="animate-bounce" />
+        </motion.div>
+      </section>
+    </div>
   );
 };
 
 export default Home;
-
