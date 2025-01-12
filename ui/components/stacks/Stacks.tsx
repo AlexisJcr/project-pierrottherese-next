@@ -93,8 +93,8 @@ const TechStacks = () => {
             ))}
           </div>
 
-          <div className="relative flex overflow-hidden">
-            <IconCloud images={images} />
+          <div className="relative hidden overflow-hidden md:flex">
+            <IconCloud  images={images} />
           </div>
         </div>
       </div>

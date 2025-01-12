@@ -149,7 +149,7 @@ export function IconCloud({ icons, images }: IconCloudProps) {
       const screenY = canvasRef.current!.height / 2 + rotatedY;
 
       const scale = (rotatedZ + 200) / 300;
-      const radius = 20 * scale;
+      const radius = 30 * scale;
       const dx = x - screenX;
       const dy = y - screenY;
 
@@ -310,8 +310,8 @@ export function IconCloud({ icons, images }: IconCloudProps) {
   return (
     <canvas
       ref={canvasRef}
-      width={400}
-      height={400}
+      width={450}
+      height={450}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}

@@ -17,7 +17,7 @@ import Loisirs from "@/ui/components/loisirs/Loisirs"
 export default function Portfolio() {
   return (
     <div className="relative w-full bg-primary">
-    <Particles className="absolute inset-0 z-1" quantity={250} color="#fff" />
+    <Particles className="absolute inset-0 z-1 hidden md:flex" quantity={250} color="#fff" />
       <Navbar />
       <Home />
       <About />
