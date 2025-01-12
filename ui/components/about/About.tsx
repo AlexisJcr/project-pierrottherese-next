@@ -27,7 +27,7 @@ const About = () => {
           </p>
           
           <p className='text-xl'>
-            Mon objectif est d'apprendre les meilleures méthodes et réflexes afin de réaliser une application solide, performante et conviviale selon un design UX/UI réfléchi.
+            Mon objectif est d'apprendre les meilleurs méthodes et réflexes afin de réaliser une application solide, performante et conviviale selon un design UX/UI réfléchi.
           </p>
         </motion.div>
       </div>

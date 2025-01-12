@@ -53,7 +53,7 @@ const formationData = [
   },
   {
     date: "2020 - 2022",
-    degree: "Baccalauréat STI2D SIN",
+    degree: "Baccalauréat STI2D Systèmes d'Information et Numérique",
     institution: "La Croix Rouge La Salle",
     location: "Brest, Bretagne, France",
     logoUrl: logoCroixRouge,

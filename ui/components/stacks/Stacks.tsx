@@ -28,6 +28,7 @@ const slugs = [
   "html5",
   "css3",
   "C++",
+  "python",
   "java",
   "react",
   "nodedotjs",
