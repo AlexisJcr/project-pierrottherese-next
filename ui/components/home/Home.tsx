@@ -1,9 +1,12 @@
 import { motion} from "framer-motion";
 import { Github, Linkedin, ChevronDown } from "lucide-react";
 
+import Particles from "@/ui/design-system/particles/Particles"
+
 const Home = () => {
   return (
-    <div className="min-h-screen bg-primary text-white">
+    <div className="min-h-screen text-white">
+
       <section className="h-screen flex flex-col justify-center items-center relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
