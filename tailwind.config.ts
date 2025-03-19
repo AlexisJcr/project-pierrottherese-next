@@ -19,13 +19,13 @@ export default {
       },
       colors: {
         primary: {
-          DEFAULT: "#171e31",
+          DEFAULT: "#0B2A3C",
         },
         secondary: {
-          DEFAULT: "#14253c",
+          DEFAULT: "#1e7487",
         },
         tertiary: {
-          DEFAULT: "#4b75ff",
+          DEFAULT: "#D2433C",
         },
         white: {
           DEFAULT: "#FFFFFF",
