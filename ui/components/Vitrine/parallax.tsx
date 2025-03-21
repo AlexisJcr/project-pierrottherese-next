@@ -6,6 +6,8 @@ import { Button } from "@/ui/design-system/Button/button"
 
 import Background from "@/ui/design-system/assets/image/backgroundimage.jpg"
 
+import SectionPres from "@/ui/components/Vitrine/pres-section"
+
 export default function Parallax() {
   const [scrollY, setScrollY] = useState(0)
   const parallaxRef = useRef<HTMLDivElement>(null)
@@ -36,7 +38,7 @@ export default function Parallax() {
             priority
           />
           {/* Overlay */}
-          <div className="absolute inset-0 bg-gray-500/20" />
+          <div className="absolute inset-0 bg-gray-700/20" />
         </div>
 
         {/* Contenu superposé */}
@@ -51,42 +53,10 @@ export default function Parallax() {
         </div>
       </div>
 
-      {/* Section Présentation */}
-      <section className="bg-background py-16">
-        <div className="container px-4 md:px-6">
-          <h2 className="mb-12 text-center text-3xl font-bold tracking-tight md:text-4xl">Présentation</h2>
+      {/* Section Présentation avec contenu dynamique */}
+      <SectionPres sectionKey="presentation" />
 
-          <div className="grid gap-8 md:grid-cols-2 md:gap-12">
-            {/* Texte à gauche */}
-            <div className="flex flex-col justify-center space-y-4">
-              <p className="text-muted-foreground">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu
-                sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla
-                enim.
-              </p>
-              <p className="text-muted-foreground">
-                Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut
-                dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio.
-              </p>
-              <p className="text-muted-foreground">
-                Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor
-                lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus
-                eget in metus.
-              </p>
-            </div>
-
-            {/* Image à droite */}
-            <div className="relative h-64 overflow-hidden rounded-lg md:h-auto">
-              <Image
-                src="/placeholder.svg?height=600&width=800"
-                alt="À propos de l'association"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      
     </div>
   )
 }
