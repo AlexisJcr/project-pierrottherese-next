@@ -1,5 +1,3 @@
-// admin/page.tsx
-
 "use client"
 
 import { useState, useEffect, type FormEvent } from "react"
@@ -15,7 +13,7 @@ import Navbar from "@/ui/components/Navbar/navbar"
 
 const supabase = createSupabaseClient()
 
-export default function AdminPage() {
+export default function AdminCMS() {
   const [section, setSection] = useState<ContentSection | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)

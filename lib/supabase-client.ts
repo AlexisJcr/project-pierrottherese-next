@@ -2,28 +2,22 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { createClient } from "@supabase/supabase-js"
 import type { Database } from "./database.types"
 
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
-
-supabase.auth.onAuthStateChange((event, session) => {
-  if (event === 'SIGNED_IN' || event === 'SIGNED_OUT') {
-    console.log('Auth event:', event)
-    console.log('Session:', session)
-  }
-})
+// Singleton pour le client Supabase côté client
+let clientInstance: ReturnType<typeof createClientComponentClient<Database>> | null = null
 
 // Client Supabase côté client (avec auth-helper)
 export const createSupabaseClient = () => {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  
-  return createClientComponentClient<Database>({ supabaseUrl, supabaseKey })
+  if (clientInstance) return clientInstance
+
+  clientInstance = createClientComponentClient<Database>()
+  return clientInstance
 }
 
 // Client Supabase standard côté serveur (sans auth-helper)
 export const createStandardSupabaseClient = () => {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  
+
   return createClient<Database>(supabaseUrl, supabaseKey)
 }
 

@@ -35,31 +35,55 @@ export default async function AdminDashboardPage() {
       <Navbar />
       <main className="flex-1 p-4 pt-20">
         <div className="container">
-          <h1 className="text-3xl text-primary font-bold mb-6">Tableau de bord administrateur</h1>
+          <h1 className="text-3xl text-primary font-bold mb-6">Gestionnaire de contenu</h1>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
+          <Card>
               <CardHeader>
-                <CardTitle className="text-secondary">Gestionnaire d'utilisateurs</CardTitle>
-                <CardDescription className="text-tertiary">
-                  Gérer les comptes administrateurs et adhérents
-                </CardDescription>
+                <CardTitle className="text-secondary">Gestion de la présentation</CardTitle>
+                <CardDescription className="text-tertiary">Modifier la présentation sur la vitrine</CardDescription>
               </CardHeader>
               <CardContent>
                 <Button asChild className="w-full">
-                  <Link href="/admin/users">Accéder</Link>
+                  <Link href="/admin/cms/presentation">Accéder</Link>
                 </Button>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-secondary">Gestionaire de contenu</CardTitle>
-                <CardDescription className="text-tertiary">Modifier le contenu du site vitrine</CardDescription>
+                <CardTitle className="text-secondary">Gestion des missions</CardTitle>
+                <CardDescription className="text-tertiary">Gérer les missions affichées sur la vitrine</CardDescription>
               </CardHeader>
               <CardContent>
                 <Button asChild className="w-full">
-                  <Link href="/admin/cms">Accéder</Link>
+                  <Link href="/admin/cms/missions">Accéder</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-secondary">Gestion des événements</CardTitle>
+                <CardDescription className="text-tertiary">Gérer les événements du calendrier sur la vitrine</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button asChild className="w-full">
+                  <Link href="/admin/cms/events">Accéder</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-secondary">Gestion des contacts</CardTitle>
+                <CardDescription className="text-tertiary">
+                  Modifier les informations de contact et liens sociaux sur la vitrine
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button asChild className="w-full">
+                  <Link href="/admin/cms/contacts">Accéder</Link>
                 </Button>
               </CardContent>
             </Card>
