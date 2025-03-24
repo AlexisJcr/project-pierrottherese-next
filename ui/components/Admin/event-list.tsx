@@ -102,7 +102,7 @@ export function EventList() {
                     </div>
                     <div className="flex gap-2">
                       <Button variant="outline" size="icon" asChild>
-                        <Link href={`/admin/events/edit/${event.id}`}>
+                        <Link href={`/admin/cms/events/edit/${event.id}`}>
                           <Pencil className="h-4 w-4" />
                           <span className="sr-only">Modifier</span>
                         </Link>

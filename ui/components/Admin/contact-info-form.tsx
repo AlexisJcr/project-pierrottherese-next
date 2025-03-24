@@ -1,95 +1,94 @@
 "use client"
 
-import type React from "react"
+import type React from "react";
+import { useState, useEffect } from "react";
+import { createSupabaseClient, type ContactInfo } from "@/lib/supabase-client";
+import { Button } from "@/ui/design-system/Button/button";
+import { Input } from "@/ui/design-system/Input/input";
+import { Label } from "@/ui/design-system/Label/label";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/ui/design-system/Card/card";
+import { MoveUp, MoveDown, Save } from 'lucide-react';
 
-import { useState, useEffect } from "react"
-import { createSupabaseClient, type ContactInfo } from "@/lib/supabase-client"
-import { Button } from "@/ui/design-system/Button/button"
-import { Input } from "@/ui/design-system/Input/input"
-import { Label } from "@/ui/design-system/Label/label"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/ui/design-system/Card/card"
-import { MoveUp, MoveDown, Save } from "lucide-react"
-
-export async function ContactInfoForm() {
-  const [contactInfo, setContactInfo] = useState<ContactInfo[]>([])
-  const [loading, setLoading] = useState(true)
-  const [saving, setSaving] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [success, setSuccess] = useState<string | null>(null)
-  const supabase = await createSupabaseClient()
+export function ContactInfoForm() {
+  const [contactInfo, setContactInfo] = useState<ContactInfo[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const supabase = createSupabaseClient();
 
   useEffect(() => {
-    fetchContactInfo()
-  }, [])
+    fetchContactInfo();
+  }, []);
 
   async function fetchContactInfo() {
     try {
-      setLoading(true)
+      setLoading(true);
 
-      const { data, error } = await supabase.from("contact_info").select("*").order("position", { ascending: true })
+      const { data, error } = await supabase.from("contact_info").select("*").order("position", { ascending: true });
 
-      if (error) throw error
+      if (error) throw error;
 
-      setContactInfo(data || [])
+      setContactInfo(data || []);
     } catch (err) {
-      console.error("Erreur lors de la récupération des informations de contact:", err)
-      setError(err instanceof Error ? err.message : "Une erreur est survenue")
+      console.error("Erreur lors de la récupération des informations de contact:", err);
+      setError(err instanceof Error ? err.message : "Une erreur est survenue");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   const handleChange = (id: string, field: keyof ContactInfo, value: string) => {
-    setContactInfo((prev) => prev.map((item) => (item.id === id ? { ...item, [field]: value } : item)))
-  }
+    setContactInfo((prev) => prev.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
+  };
 
   const handleMove = async (id: string, direction: "up" | "down") => {
     try {
-      const currentIndex = contactInfo.findIndex((item) => item.id === id)
-      if (currentIndex === -1) return
+      const currentIndex = contactInfo.findIndex((item) => item.id === id);
+      if (currentIndex === -1) return;
 
       // Si on essaie de monter le premier élément ou descendre le dernier, ne rien faire
       if (
         (direction === "up" && currentIndex === 0) ||
         (direction === "down" && currentIndex === contactInfo.length - 1)
       ) {
-        return
+        return;
       }
 
-      const swapIndex = direction === "up" ? currentIndex - 1 : currentIndex + 1
-      const currentItem = contactInfo[currentIndex]
-      const swapItem = contactInfo[swapIndex]
+      const swapIndex = direction === "up" ? currentIndex - 1 : currentIndex + 1;
+      const currentItem = contactInfo[currentIndex];
+      const swapItem = contactInfo[swapIndex];
 
       // Échanger les positions
       const { error: error1 } = await supabase
         .from("contact_info")
         .update({ position: swapItem.position })
-        .eq("id", currentItem.id)
+        .eq("id", currentItem.id);
 
-      if (error1) throw error1
+      if (error1) throw error1;
 
       const { error: error2 } = await supabase
         .from("contact_info")
         .update({ position: currentItem.position })
-        .eq("id", swapItem.id)
+        .eq("id", swapItem.id);
 
-      if (error2) throw error2
+      if (error2) throw error2;
 
       // Mettre à jour la liste
-      fetchContactInfo()
+      fetchContactInfo();
     } catch (err) {
-      console.error("Erreur lors du déplacement:", err)
-      setError(err instanceof Error ? err.message : "Une erreur est survenue")
+      console.error("Erreur lors du déplacement:", err);
+      setError(err instanceof Error ? err.message : "Une erreur est survenue");
     }
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      setSaving(true)
-      setError(null)
-      setSuccess(null)
+      setSaving(true);
+      setError(null);
+      setSuccess(null);
 
       // Mettre à jour chaque élément
       for (const item of contactInfo) {
@@ -100,22 +99,22 @@ export async function ContactInfoForm() {
             value: item.value,
             updated_at: new Date().toISOString(),
           })
-          .eq("id", item.id)
+          .eq("id", item.id);
 
-        if (error) throw error
+        if (error) throw error;
       }
 
-      setSuccess("Informations de contact mises à jour avec succès")
+      setSuccess("Informations de contact mises à jour avec succès");
     } catch (err) {
-      console.error("Erreur lors de la sauvegarde:", err)
-      setError(err instanceof Error ? err.message : "Une erreur est survenue")
+      console.error("Erreur lors de la sauvegarde:", err);
+      setError(err instanceof Error ? err.message : "Une erreur est survenue");
     } finally {
-      setSaving(false)
+      setSaving(false);
     }
-  }
+  };
 
   if (loading) {
-    return <div className="text-center py-8">Chargement des informations de contact...</div>
+    return <div className="text-center py-8">Chargement des informations de contact...</div>;
   }
 
   return (
@@ -170,6 +169,5 @@ export async function ContactInfoForm() {
         </CardFooter>
       </form>
     </Card>
-  )
+  );
 }
-

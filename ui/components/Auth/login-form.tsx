@@ -44,15 +44,17 @@ export default function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-xl mx-auto border-gray-500 border-2">
+    <Card className="w-full max-w-xl mx-auto border-2">
       <CardHeader>
-        <CardTitle className="text-primary text-2xl text-center">Connexion</CardTitle>
-        <CardDescription className="text-tertiary text-center">Espace Adhérents</CardDescription>
+        <CardTitle className="text-2xl text-center">Connexion</CardTitle>
+        <CardDescription className="text-center">Connectez vous à votre espace adhérent</CardDescription>
       </CardHeader>
       <form onSubmit={handleLogin}>
         <CardContent className="space-y-4 ">
-          <div className="space-y-2 text-primary">
-            <Label className="text-lg" htmlFor="email">Adresse email</Label>
+          <div className="space-y-2 ">
+            <Label className="text-lg" htmlFor="email">
+              Adresse email
+            </Label>
             <Input
               className="text-black"
               id="email"
@@ -63,8 +65,10 @@ export default function LoginForm() {
               required
             />
           </div>
-          <div className="space-y-2 text-primary">
-            <Label className="text-lg" htmlFor="password">Mot de passe</Label>
+          <div className="space-y-2">
+            <Label className="text-lg" htmlFor="password">
+              Mot de passe
+            </Label>
             <Input
               className="text-black"
               id="password"
@@ -86,3 +90,4 @@ export default function LoginForm() {
     </Card>
   )
 }
+

@@ -38,7 +38,7 @@ export default async function NewMissionPage() {
       <Navbar />
       <main className="flex-1 p-4 pt-20">
         <div className="container max-w-2xl">
-          <h1 className="text-3xl font-bold mb-6">Ajouter une mission</h1>
+          <h1 className="text-3xl text-primary font-bold mb-6">Ajouter une mission</h1>
           <MissionForm />
         </div>
       </main>

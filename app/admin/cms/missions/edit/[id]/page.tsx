@@ -1,48 +1,52 @@
-import { redirect } from "next/navigation"
-import { createServerSupabaseClient } from "@/lib/supabase-server"
-import Navbar from "@/ui/components/Navbar/navbar"
-import { MissionForm } from "@/ui/components/Admin/mission-form"
+import { redirect } from "next/navigation";
+import { createServerSupabaseClient } from "@/lib/supabase-server";
+import Navbar from "@/ui/components/Navbar/navbar";
+import { MissionForm } from "@/ui/components/Admin/mission-form";
 
 export default async function EditMissionPage({ params }: { params: { id: string } }) {
-  const supabase = await createServerSupabaseClient()
+  const supabase = await createServerSupabaseClient();
 
   try {
-    // Vérifier si l'utilisateur est connecté
-    const {
-      data: { session },
-    } = await supabase.auth.getSession()
+    const { data: user, error: userError } = await supabase.auth.getUser();
 
-    if (!session) {
-      redirect("/login")
+    if (userError || !user) {
+      console.error("Erreur d'authentification :", userError);
+      redirect("/login");
     }
 
-    // Récupérer le profil de l'utilisateur
     const { data: profile, error: profileError } = await supabase
       .from("profiles")
       .select("*")
-      .eq("id", session.user.id)
-      .single()
+      .eq("id", user.user?.id)
+      .single();
 
-    if (profileError) {
-      console.error("Erreur lors de la récupération du profil:", profileError)
-      redirect("/login")
+    if (profileError || !profile) {
+      console.error("Erreur lors de la récupération du profil:", profileError);
+      redirect("/login");
     }
 
-    // Vérifier si l'utilisateur est un administrateur
-    if (!profile || profile.role !== "admin") {
-      redirect("/login")
+    // 🔹 Vérifier si l'utilisateur est un administrateur
+    if (profile.role !== "admin") {
+      redirect("/login");
     }
 
-    // Récupérer les données de la mission à modifier
+    const missionId = params?.id;
+
+    if (!missionId) {
+      console.error("Erreur : ID de mission manquant");
+      redirect("/admin/cms/missions");
+    }
+
+    // 🔹 Récupérer la mission à modifier
     const { data: mission, error: missionError } = await supabase
       .from("mission_boxes")
       .select("*")
-      .eq("id", params.id)
-      .single()
+      .eq("id", missionId)
+      .single();
 
     if (missionError) {
-      console.error("Erreur lors de la récupération de la mission:", missionError)
-      redirect("/admin/cms/missions")
+      console.error("Erreur lors de la récupération de la mission:", missionError);
+      redirect("/admin/cms/missions");
     }
 
     return (
@@ -51,14 +55,13 @@ export default async function EditMissionPage({ params }: { params: { id: string
         <main className="flex-1 p-4 pt-20">
           <div className="container max-w-2xl">
             <h1 className="text-3xl font-bold mb-6">Modifier la mission</h1>
-            <MissionForm missionId={params.id} initialData={mission} />
+            <MissionForm missionId={missionId} initialData={mission} />
           </div>
         </main>
       </div>
-    )
+    );
   } catch (error) {
-    console.error("Erreur:", error)
-    redirect("/login")
+    console.error("Erreur:", error);
+    redirect("/login");
   }
 }
-

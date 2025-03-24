@@ -7,15 +7,15 @@ export default async function AdherentDashboardPage() {
 
   // Vérifier si l'utilisateur est connecté
   const {
-    data: { session },
-  } = await supabase.auth.getSession()
+    data: { user },
+  } = await supabase.auth.getUser()
 
-  if (!session) {
+  if (!user) {
     redirect("/login")
   }
 
   // Récupérer le profil de l'utilisateur
-  const { data: profile, error } = await supabase.from("profiles").select("*").eq("id", session.user.id).single()
+  const { data: profile, error } = await supabase.from("profiles").select("*").eq("id", user.id).single()
 
   if (error) {
     console.error("Erreur lors de la récupération du profil:", error)
@@ -34,3 +34,4 @@ export default async function AdherentDashboardPage() {
     </div>
   )
 }
+

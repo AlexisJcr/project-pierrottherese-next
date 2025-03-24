@@ -33,8 +33,6 @@ export default function SectionPres({ sectionKey }: ContentSectionProps) {
         }
 
         const data = await response.json()
-        console.log("API Response:", data)  // Log de la réponse pour déboguer
-
         if (data.error) {
           throw new Error(data.error)
         }
@@ -77,7 +75,7 @@ export default function SectionPres({ sectionKey }: ContentSectionProps) {
 
           {/* Image à droite */}
           <div className="relative h-64 overflow-hidden rounded-lg md:h-auto">
-            <Image src={section.image_url || "/placeholder.svg"} alt={section.title} fill className="object-cover" />
+            <Image src={section.image_url || "/placeholder.svg"} alt={section.title} fill sizes="50vw" className="object-cover object-center" />
           </div>
         </div>
       </div>

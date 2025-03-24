@@ -194,7 +194,7 @@ export function EventForm({ eventId, initialData }: EventFormProps) {
           {success && <div className="rounded-md bg-green-50 p-3 text-sm text-green-600">{success}</div>}
         </CardContent>
         <CardFooter className="flex justify-between">
-          <Button type="button" variant="outline" onClick={() => router.push("/admin/events")}>
+          <Button type="button" className="border-gray-500 text-red-600" variant="outline" onClick={() => router.push("/admin/cms/events")}>
             Annuler
           </Button>
           <Button type="submit" disabled={loading}>

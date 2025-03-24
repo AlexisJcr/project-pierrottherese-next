@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
 import { createServerSupabaseClient } from "@/lib/supabase-server"
-import NavbarShowcase from "@/ui/components/Navbar/navbar"
+import Navbar from "@/ui/components/Navbar/navbar"
 import { EventForm } from "@/ui/components/Admin/event-form"
 
 export default async function EditEventPage({ params }: { params: { id: string } }) {
@@ -38,12 +38,12 @@ export default async function EditEventPage({ params }: { params: { id: string }
 
     if (eventError) {
       console.error("Erreur lors de la récupération de l'événement:", eventError)
-      redirect("/admin/events")
+      redirect("/admin/cms/events")
     }
 
     return (
       <div className="min-h-screen flex flex-col">
-        <NavbarShowcase />
+        <Navbar />
         <main className="flex-1 p-4 pt-20">
           <div className="container max-w-2xl">
             <h1 className="text-3xl font-bold mb-6">Modifier l'événement</h1>

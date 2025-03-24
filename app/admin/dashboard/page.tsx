@@ -8,22 +8,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/
 export default async function AdminDashboardPage() {
   const supabase = await createServerSupabaseClient()
 
-  // Vérifier si l'utilisateur est connecté
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
+  const { data: user, error: userError } = await supabase.auth.getUser();
 
-  if (!session) {
-    redirect("/login")
-  }
+    if (userError || !user) {
+      console.error("Erreur d'authentification :", userError);
+      redirect("/login");
+    }
 
-  // Récupérer le profil de l'utilisateur
-  const { data: profile, error } = await supabase.from("profiles").select("*").eq("id", session.user.id).single()
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", user.user?.id)
+      .single();
 
-  if (error) {
-    console.error("Erreur lors de la récupération du profil:", error)
-    // Même en cas d'erreur, on continue pour éviter une boucle de redirection
-  }
+    if (profileError || !profile) {
+      console.error("Erreur lors de la récupération du profil:", profileError);
+      redirect("/login");
+    }
 
   // Vérifier si l'utilisateur est un administrateur
   if (!profile || profile.role !== "admin") {
@@ -40,8 +41,8 @@ export default async function AdminDashboardPage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <Card>
               <CardHeader>
-                <CardTitle className="text-secondary">Gestionnaire d'utilisateurs</CardTitle>
-                <CardDescription className="text-tertiary">
+                <CardTitle>Gestionnaire d'utilisateurs</CardTitle>
+                <CardDescription>
                   Gérer les comptes administrateurs et adhérents
                 </CardDescription>
               </CardHeader>
@@ -54,8 +55,8 @@ export default async function AdminDashboardPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-secondary">Gestionaire de contenu</CardTitle>
-                <CardDescription className="text-tertiary">Modifier le contenu du site vitrine</CardDescription>
+                <CardTitle>Gestionnaire de contenu</CardTitle>
+                <CardDescription>Modifier le contenu du site vitrine</CardDescription>
               </CardHeader>
               <CardContent>
                 <Button asChild className="w-full">
@@ -69,3 +70,4 @@ export default async function AdminDashboardPage() {
     </div>
   )
 }
+

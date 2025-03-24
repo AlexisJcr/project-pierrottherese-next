@@ -120,7 +120,7 @@ export function MissionList() {
                     />
                   </div>
                 )}
-                <div className="flex-1">
+                <div className="text-primary flex-1">
                   <div className="flex items-start justify-between">
                     <div>
                       <h3 className="text-xl font-medium">{mission.title}</h3>
@@ -136,7 +136,7 @@ export function MissionList() {
                         <span className="sr-only">Descendre</span>
                       </Button>
                       <Button variant="outline" size="icon" asChild>
-                        <Link href={`/admin/missions/edit/${mission.id}`}>
+                        <Link href={`/admin/cms/missions/edit/${mission.id}`}>
                           <Pencil className="h-4 w-4" />
                           <span className="sr-only">Modifier</span>
                         </Link>

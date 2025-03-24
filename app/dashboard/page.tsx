@@ -5,17 +5,17 @@ import Navbar from "@/ui/components/Navbar/navbar"
 export default async function DashboardPage() {
   const supabase = await createServerSupabaseClient()
 
-  // Vérifier si l'utilisateur est connecté
+  // Vérifier si l'utilisateur est connecté avec getUser() au lieu de getSession()
   const {
-    data: { session },
-  } = await supabase.auth.getSession()
+    data: { user },
+  } = await supabase.auth.getUser()
 
-  if (!session) {
+  if (!user) {
     redirect("/login")
   }
 
   // Récupérer le profil de l'utilisateur
-  const { data: profile, error } = await supabase.from("profiles").select("*").eq("id", session.user.id).single()
+  const { data: profile, error } = await supabase.from("profiles").select("*").eq("id", user.id).single()
 
   if (error) {
     console.error("Erreur lors de la récupération du profil:", error)
@@ -28,7 +28,6 @@ export default async function DashboardPage() {
   } else {
     redirect("/adherent/dashboard")
   }
-
 
   return (
     <div className="min-h-screen flex flex-col">

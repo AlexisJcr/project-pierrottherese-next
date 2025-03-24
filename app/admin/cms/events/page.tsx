@@ -41,9 +41,9 @@ export default async function AdminEventsPage() {
       <main className="flex-1 p-4 pt-20">
         <div className="container">
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-3xl font-bold">Gestion des événements</h1>
+            <h1 className="text-3xl text-primary font-bold">Gestion des événements</h1>
             <Button asChild>
-              <Link href="/admin/events/new">Ajouter un événement</Link>
+              <Link href="/admin/cms/events/new">Ajouter un événement</Link>
             </Button>
           </div>
 

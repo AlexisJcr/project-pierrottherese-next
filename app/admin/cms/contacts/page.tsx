@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
 import { createServerSupabaseClient } from "@/lib/supabase-server"
-import NavbarShowcase from "@/ui/components/Navbar/navbar"
+import Navbar from "@/ui/components/Navbar/navbar"
 import { ContactInfoForm } from "@/ui/components/Admin/contact-info-form"
 import { SocialLinksForm } from "@/ui/components/Admin/social-links-form"
 
@@ -36,10 +36,10 @@ export default async function AdminContactsPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <NavbarShowcase />
+      <Navbar />
       <main className="flex-1 p-4 pt-20">
         <div className="container">
-          <h1 className="text-3xl font-bold mb-6">Gestion des contacts</h1>
+          <h1 className="text-3xl font-bold mb-6 text-primary">Gestion des contacts</h1>
 
           <div className="grid gap-8 md:grid-cols-2">
             <ContactInfoForm />

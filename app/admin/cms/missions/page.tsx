@@ -9,21 +9,22 @@ export default async function AdminMissionsPage() {
   const supabase = await createServerSupabaseClient()
 
   try {
-    // Vérifier si l'utilisateur est connecté
-    const {
-      data: { session },
-    } = await supabase.auth.getSession()
+    const { data: user, error: userError } = await supabase.auth.getUser();
 
-    if (!session) {
-      redirect("/login")
+    if (userError || !user) {
+      console.error("Erreur d'authentification :", userError);
+      redirect("/login");
     }
 
-    // Récupérer le profil de l'utilisateur
-    const { data: profile, error } = await supabase.from("profiles").select("*").eq("id", session.user.id).single()
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", user.user?.id)
+      .single();
 
-    if (error) {
-      console.error("Erreur lors de la récupération du profil:", error)
-      redirect("/login")
+    if (profileError || !profile) {
+      console.error("Erreur lors de la récupération du profil:", profileError);
+      redirect("/login");
     }
 
     // Vérifier si l'utilisateur est un administrateur
