@@ -154,16 +154,16 @@ export default function NavbarShowcase() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="sm">
-                  <User className="h-5 w-5 mr-2" />
-                  <span className="hidden sm:inline-block">{user.email?.split("@")[0]}</span>
+                  <User className="text-secondary h-5 w-5 mr-2" />
+                  <span className="text-secondary hidden sm:inline-block">{user.email?.split("@")[0]}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem asChild className="text-primary font-medium">
                   <Link href={getDashboardLink()}>Tableau de bord</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout}>
+                <DropdownMenuItem className="text-tertiary font-semibold" onClick={handleLogout}>
                   <LogOut className="h-6 w-6 mr-2" />
                   Déconnexion
                 </DropdownMenuItem>

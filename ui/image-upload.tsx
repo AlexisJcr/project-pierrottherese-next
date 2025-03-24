@@ -9,7 +9,7 @@ import { createSupabaseClient } from "@/lib/supabase-client"
 // Client Supabase côté client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-const supabase = createSupabaseClient()
+const supabase = await createSupabaseClient()
 
 interface ImageUploadProps {
   currentImageUrl: string

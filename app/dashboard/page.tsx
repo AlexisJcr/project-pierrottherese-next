@@ -29,7 +29,7 @@ export default async function DashboardPage() {
     redirect("/adherent/dashboard")
   }
 
-  // Cette partie ne devrait jamais être atteinte, mais on la garde pour la sécurité
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
