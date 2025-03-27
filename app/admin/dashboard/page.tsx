@@ -43,7 +43,7 @@ export default async function AdminDashboardPage() {
               <CardHeader>
                 <CardTitle>Gestionnaire d'utilisateurs</CardTitle>
                 <CardDescription>
-                  Gérer les comptes administrateurs et adhérents
+                  Gérer les comptes utilisateurs
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -61,6 +61,18 @@ export default async function AdminDashboardPage() {
               <CardContent>
                 <Button asChild className="w-full">
                   <Link href="/admin/cms">Accéder</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Géolocalisation</CardTitle>
+                <CardDescription>Accéder à la géolocalisation en temps réel</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button asChild className="w-full">
+                  <Link href="/admin/tracking">Accéder</Link>
                 </Button>
               </CardContent>
             </Card>

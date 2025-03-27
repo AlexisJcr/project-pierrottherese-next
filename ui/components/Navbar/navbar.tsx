@@ -31,22 +31,21 @@ export default function NavbarShowcase() {
     async function getUser() {
       try {
         // Vérifier si l'utilisateur est connecté
-        const {
-          data: { session },
-        } = await supabase.auth.getSession()
+        const { data: user, error: userError } = await supabase.auth.getUser();
 
-        if (session?.user) {
-          setUser(session.user)
+        if (user?.user) {
+          setUser(user.user)
 
           // Récupérer le rôle de l'utilisateur
-          const { data: profile, error } = await supabase
-            .from("profiles")
-            .select("role")
-            .eq("id", session.user.id)
-            .single()
+          const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", user.user?.id)
+      .single();
 
-          if (error) {
-            console.error("Erreur lors de la récupération du profil:", error)
+
+      if (profileError || !profile) {
+            console.error("Erreur lors de la récupération du profil:", profileError)
           } else if (profile) {
             setUserRole(profile.role)
           }
@@ -105,7 +104,7 @@ export default function NavbarShowcase() {
   }
 
   return (
-    <header className="w-full border-b bg-background/95 backdrop-blur-sm fixed top-0 z-50 shadow-sm">
+    <header className="w-full border-b bg-background/95 backdrop-blur-sm fixed top-0 z-100 shadow-sm">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         {/* Logo à gauche */}
         <div className="flex items-center">
@@ -137,14 +136,14 @@ export default function NavbarShowcase() {
 
         {/* Icônes sociales et connexion à droite */}
         <div className="hidden md:flex items-center gap-4">
-          <Link href="#" className="text-muted-foreground text-primary hover:text-tertiary">
+          {/* <Link href="#" className="text-muted-foreground text-primary hover:text-tertiary">
             <Facebook className="h-6 w-6" />
             <span className="sr-only">Facebook</span>
           </Link>
           <Link href="#" className="text-muted-foreground text-primary hover:text-tertiary">
             <Instagram className="h-6 w-6" />
             <span className="sr-only">Instagram</span>
-          </Link>
+          </Link> */}
 
           {loading ? (
             <Button variant="ghost" size="sm" disabled>
@@ -159,11 +158,11 @@ export default function NavbarShowcase() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem asChild className="text-primary font-medium">
+                <DropdownMenuItem asChild className="text-primary cursor-pointer font-medium">
                   <Link href={getDashboardLink()}>Tableau de bord</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-tertiary font-semibold" onClick={handleLogout}>
+                <DropdownMenuItem className="text-tertiary cursor-pointer font-semibold" onClick={handleLogout}>
                   <LogOut className="h-6 w-6 mr-2" />
                   Déconnexion
                 </DropdownMenuItem>
@@ -223,7 +222,7 @@ export default function NavbarShowcase() {
                 Contacts
               </Link>
 
-              <div className="flex items-center gap-4 mt-4">
+              {/* <div className="flex items-center gap-4 mt-4">
                 <Link href="#" className="text-muted-foreground hover:text-primary">
                   <Facebook className="h-5 w-5" />
                   <span className="sr-only">Facebook</span>
@@ -232,7 +231,7 @@ export default function NavbarShowcase() {
                   <Instagram className="h-5 w-5" />
                   <span className="sr-only">Instagram</span>
                 </Link>
-              </div>
+              </div> */}
 
               {user ? (
                 <div className="mt-4 space-y-2">
